@@ -20,74 +20,101 @@ import {
   Info,
   LogOut,
   MailWarning,
+  Menu,
   MessageCircleDashed,
   PlusCircle,
   Search,
   Trash,
   TriangleAlert,
   User,
+  X,
 } from "lucide-react";
 import moment from "moment";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const FeedNavigation = () => {
   const path = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className=" fixed top-0 left-0 w-full bg-background/90 backdrop-blur-md z-50 ">
-      <div className=" wrapper py-2 flex items-center justify-between ">
+    <div className="fixed top-0 left-0 w-full bg-background/90 backdrop-blur-md z-50 shadow-md">
+      <div className="wrapper py-2 px-4 flex items-center justify-center gap-2 ">
+        {/* Logo and Search */}
         <div className="flex items-center gap-4">
           <Link href={"/feed"}>
-            {" "}
             <motion.img
-              initial={{
-                rotate: "180deg",
-                filter: "blur(5px)",
-                opacity: 0,
-              }}
+              initial={{ rotate: "180deg", filter: "blur(5px)", opacity: 0 }}
               animate={{
                 rotate: 0,
                 filter: "blur(0px)",
                 opacity: 1,
-                transition: {
-                  ease: [0.25, 1, 0.5, 1],
-                  duration: 2,
-                },
+                transition: { ease: [0.25, 1, 0.5, 1], duration: 2 },
               }}
-              className=" size-16 rounded-full  mix-blend-multiply"
+              className="size-12 md:size-16 rounded-full mix-blend-multiply"
               src="/brand/logos/logo.jpeg"
+              alt="Logo"
             />
           </Link>
-          <div>
+          <div className="hidden md:block">
             <SearchComp />
           </div>
         </div>
-        <div>
-          <div className="flex items-center">
-            {FeedNavigationItems.map((item, i) => (
-              <Link
-                className={buttonVariants({
-                  variant: "link",
-                  size: "icon",
-                  className: cn(
-                    "opacity-75 hover:opacity-100 transition-all",
-                    path === item.href && "bg-primary/25 text-background"
-                  ),
-                })}
-                key={i}
-                href={item.href}
-              >
-                {item.icon}
-              </Link>
-            ))}
-            <CreatePost />
-            <Messages />
-            <Notification />
-            <ProfileButton />
-          </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-4">
+          {FeedNavigationItems.map((item, i) => (
+            <Link
+              key={i}
+              href={item.href}
+              className={buttonVariants({
+                variant: "link",
+                size: "icon",
+                className: cn(
+                  "opacity-75 hover:opacity-100 transition-all",
+                  path === item.href && "bg-primary/25 text-background"
+                ),
+              })}
+            >
+              {item.icon}
+            </Link>
+          ))}
+          <CreatePost />
+          <Messages />
+          <Notification />
+          <ProfileButton />
         </div>
+
+        <CreatePost />
+        <Messages />
+        <Notification />
+        <ProfileButton />
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden p-2"
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-background/95 shadow-md p-4 flex flex-col gap-4">
+          {FeedNavigationItems.map((item, i) => (
+            <Link
+              key={i}
+              href={item.href}
+              className="flex items-center gap-2 p-2 rounded-md hover:bg-primary/20"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.icon} <span>{item.title}</span>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

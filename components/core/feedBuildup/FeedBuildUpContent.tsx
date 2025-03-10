@@ -29,7 +29,7 @@ const FeedBuildUpContent = () => {
     <div className=" flex items-center justify-center flex-col h-svh w-full relative ">
       <img
         src="/background/image.png"
-        className="  absolute top-0 left-0 w-full  h-full z-10"
+        className="  absolute top-0 left-0 w-full  h-full z-10 object-cover"
       />
       <motion.div
         initial={{
@@ -46,7 +46,7 @@ const FeedBuildUpContent = () => {
             duration: 1,
           },
         }}
-        className=" relative  z-20 max-w-md p-5 bg-slate-50 dark:bg-slate-950 w-full shadow-lg rounded-2xl border border-border/10  flex-col flex items-center justify-center"
+        className=" relative  z-20 max-w-md md:p-5 p-2 bg-slate-50 dark:bg-slate-950 w-full shadow-lg md:rounded-2xl border border-border/10  flex-col flex items-center justify-center"
       >
         <motion.img
           initial={{
@@ -160,6 +160,7 @@ const FeedBuildUpContent = () => {
 const Section = ({ number }: { number: number }) => {
   const [selectedColors, setSelectedColors] = useState<ColorExample[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<BrandExample[]>([]);
+  const [phoneTooltipOpen, setPhoneTooltipOpen] = useState("");
 
   const handleColorClick = (color: ColorExample) => {
     if (selectedColors.some((c) => c.name === color.name)) {
@@ -411,8 +412,12 @@ const Section = ({ number }: { number: number }) => {
               <div className=" mt-3 flex flex-wrap gap-2 w-full ">
                 {wardrobe.map((item, i) => (
                   <div key={i} className="relative">
-                    <Tooltip>
-                      <TooltipTrigger>
+                    <Tooltip open={phoneTooltipOpen == item.name}>
+                      <TooltipTrigger
+                        onClick={() => {
+                          setPhoneTooltipOpen(item.name);
+                        }}
+                      >
                         <div className="text-xs font-Poppins px-3 cursor-pointer hover:bg-foreground/10 transition-all py-1 border border-foreground/25 rounded-full flex items-center gap-1 w-full whitespace-nowrap">
                           <div>
                             {" "}

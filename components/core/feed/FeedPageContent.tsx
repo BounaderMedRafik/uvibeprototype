@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { clothingStyles, posts } from "@/frontdata";
 import { PostTypeProps } from "@/fronttypes";
 import { cn } from "@/lib/utils";
@@ -27,14 +27,14 @@ const FeedPageContent = () => {
 
   return (
     <div className="wrapper">
-      <div className="flex items-center justify-between">
+      <div className="md:flex block  items-center justify-between">
         <div className="flex items-center gap-2">
           <div>
             <Home size={17} />
           </div>
           <div className=" text-lg">Feed</div>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 mt-2 md:mt-0 flex-wrap">
           {clothingStyles.map((item, i) => (
             <div
               key={i}
@@ -161,31 +161,37 @@ const FeedPost = ({
               </DialogTitle>
             </DialogHeader>
             <div className="flex items-start">
-              <img src={outfitImage} className=" rounded-xl max-w-sm" />
-              <div className=" p-3 py-0 flex flex-col justify-between items-center h-full">
+              <img
+                src={outfitImage}
+                className="hidden md:block rounded-xl max-w-sm"
+              />
+              <div className=" py-0 flex flex-col justify-between items-center h-full">
                 <div>
                   <div className=" text-sm font-semibold opacity-75">
                     Clothes Mentioned
                   </div>
-                  <div className="flex items-stretch gap-0.5 mt-1">
-                    {Object.entries(outfit).map(([key, item]) => (
-                      <div
-                        key={key}
-                        className="flex flex-col items-center p-2 border border-foreground/10 rounded-xl h-fit w-28"
-                      >
-                        <img
-                          className="aspect-square w-24 object-contain"
-                          src={item.image}
-                        />
-                        <div className="text-xs text-start w-full flex-grow line-clamp-1">
-                          {item.name}
+                  <ScrollArea className=" max-w-xs mx-auto pb-3">
+                    <div className="flex w-full  overflow-x-scroll items-stretch gap-0.5 mt-1">
+                      {Object.entries(outfit).map(([key, item]) => (
+                        <div
+                          key={key}
+                          className="flex flex-col items-center md:p-2 p-1 border border-foreground/10 rounded-xl h-fit w-28"
+                        >
+                          <img
+                            className="aspect-square md:w-24 w-16 object-contain"
+                            src={item.image}
+                          />
+                          <div className="text-xs text-start w-full flex-grow line-clamp-1">
+                            {item.name}
+                          </div>
+                          <div className="text-xs text-start w-full flex-grow line-clamp-1">
+                            {item.originalSource}
+                          </div>
                         </div>
-                        <div className="text-xs text-start w-full flex-grow line-clamp-1">
-                          {item.originalSource}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" />
+                  </ScrollArea>
                   <div className=" text-sm font-semibold opacity-75 mt-3">
                     Description
                   </div>

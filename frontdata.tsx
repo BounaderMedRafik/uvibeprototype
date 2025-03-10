@@ -1,4 +1,4 @@
-import { Bookmark, BookMarked, Compass, Home, PlusCircle } from "lucide-react";
+import { Bookmark, Compass, Home } from "lucide-react";
 import {
   BodyTypesProps,
   BrandCategory,
@@ -155,7 +155,7 @@ export const messages: MessageTypeProps[] = [
     id: "1",
     senderName: "Siradj Monir Lamri",
     senderPfp:
-      "https://scontent.faae2-1.fna.fbcdn.net/v/t51.75761-15/466066603_18376124068106478_2899312711218220516_n.jpg?stp=dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFcZo2qTPoF-a9UO0sq-GaMCilxGPD7xAMKKXEY8PvEAzSy_ZSZ_7vwsPb9cddg3LGMuAx_Iw9OkH7QosHqfyjW&_nc_ohc=4xOb0YeVf20Q7kNvgGK2Qcp&_nc_oc=Adgpt4hd5X7USmiG5VpDEIO7IWfPnyRIgNV1-cVuhS9ysLn2C5y2q_qEUgXpFWww0CE&_nc_zt=23&_nc_ht=scontent.faae2-1.fna&_nc_gid=AHUOvUsuLfR5wffGOOhZCW3&oh=00_AYCtYVXUSR1SQdDZB-G_C7xmMwA_Ov0yInz7649jWpvkyA&oe=67CC1EB3",
+      "https://i.pinimg.com/736x/93/91/aa/9391aac4c050332738eeabd24bbca3d5.jpg",
     content:
       "Hey Mohamed Rafik! Are you free to call later? I need your opinion on something.",
     timestamp: new Date("2025-03-04T09:15:00Z"),
@@ -165,7 +165,7 @@ export const messages: MessageTypeProps[] = [
     id: "2",
     senderName: "Chirine Bouzana",
     senderPfp:
-      "https://i.pinimg.com/736x/cf/7d/9d/cf7d9dbd11c0751b2201ae8f566519ca.jpg",
+      "https://i.pinimg.com/736x/13/18/cb/1318cb47cb12894b7a1f6549756ae3bd.jpg",
     content:
       "Mohamed Rafik! Just wanted to say that your last idea was brilliant. Keep it up!",
     timestamp: new Date("2025-03-04T09:30:00Z"),
@@ -175,7 +175,7 @@ export const messages: MessageTypeProps[] = [
     id: "3",
     senderName: "Aymen Melouah",
     senderPfp:
-      "https://scontent.faae2-3.fna.fbcdn.net/v/t39.30808-6/438092609_3685531365037369_3090009362209181785_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFMZ72jp-DANk1_oCQSyM3KOktzPS6b9B86S3M9Lpv0H05oR0_1Osc4uABbG0YvUp3TK2lvrUTm14Kd2dYxYanL&_nc_ohc=zCWZaJVjhP4Q7kNvgHHIipi&_nc_oc=Adh_8PTgpGCvqLJaJc9AtWBHSimNLYPjVfSBXtPtR2mCT1hxpnFcagOT206_rHgiRxg&_nc_zt=23&_nc_ht=scontent.faae2-3.fna&_nc_gid=AEEHmSmwykSz2XJwrkd_SCz&oh=00_AYDdjRNr8OKnONv_7seJ6tNOJldc6eekxJHDHuTpUTk-vQ&oe=67CC3DA9",
+      "https://i.pinimg.com/736x/eb/7e/f0/eb7ef05e9db9d5aeb50ae7b52baeedef.jpg",
     content:
       "Hey Rafik, did you check out the new project update? Let me know your thoughts!",
     timestamp: new Date("2025-03-04T10:00:00Z"),
@@ -185,7 +185,7 @@ export const messages: MessageTypeProps[] = [
     id: "4",
     senderName: "Chirine Bouzana",
     senderPfp:
-      "https://i.pinimg.com/736x/cf/7d/9d/cf7d9dbd11c0751b2201ae8f566519ca.jpg",
+      "https://i.pinimg.com/736x/13/18/cb/1318cb47cb12894b7a1f6549756ae3bd.jpg",
     content:
       "Rafik, we should meet up soon! I have some ideas I’d love to discuss with you.",
     timestamp: new Date("2025-03-04T10:45:00Z"),
