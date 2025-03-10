@@ -39,8 +39,7 @@ const FeedPageContent = () => {
             <div
               key={i}
               onClick={() => {
-                setCate(item);
-                cate == item ? setCate("") : null;
+                setCate(item == cate ? "" : item);
               }}
               className={cn(
                 " border select-none border-foreground/10 px-4 py-1 rounded-full text-sm cursor-pointer hover:bg-accent/10 transition-all",
@@ -66,7 +65,6 @@ const FeedPageContent = () => {
 };
 
 const FeedPost = ({
-  id,
   title,
   description,
   outfit,
@@ -255,13 +253,15 @@ const FeedPost = ({
 
                         <div
                           onClick={handleCommentLike}
-                          className=" hover:opacity-75 transition-all cursor-pointer"
+                          className=" hover:opacity-75 transition-all flex items-center justify-center flex-col cursor-pointer"
                         >
                           <Heart
                             className={cn(commentLiked ? " fill-accent" : "")}
                             size={14}
                           />
-                          <div className=" text-xs">{item.likes}</div>
+                          <div className=" text-xs">
+                            {item.likes == 0 ? "" : item.likes}
+                          </div>
                         </div>
                       </div>
                     ))}

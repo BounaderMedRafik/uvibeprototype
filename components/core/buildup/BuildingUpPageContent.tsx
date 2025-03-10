@@ -12,22 +12,17 @@ import { BodyTypes, headTypes, skinTones } from "@/frontdata";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight, ChevronDown, Triangle } from "lucide-react";
 import { motion } from "motion/react";
-import { button } from "motion/react-client";
 import Link from "next/link";
 import { useState } from "react";
 
 const BuildingUpPageContent = () => {
   const [step, setStep] = useState(0);
-  const [gender, setGender] = useState<"Female" | "Male" | undefined>(
-    undefined
-  );
+  const [gender, setGender] = useState("");
   const [wieght, setWieght] = useState("");
   const [hieght, setHieght] = useState("");
   const [faceType, setFaceType] = useState("");
   const [bodyType, setBodyType] = useState("");
-  const [RelationStatus, setRelationStatus] = useState<
-    "Married" | "Single" | "Divorced" | undefined
-  >(undefined);
+  const [RelationStatus, setRelationStatus] = useState("");
 
   const [work, setWork] = useState("");
   const [skin, setSkin] = useState("");
@@ -109,7 +104,6 @@ const BuildingUpPageContent = () => {
                     <DropdownMenuContent className="  w-96">
                       <DropdownMenuRadioGroup
                         value={gender}
-                        //@ts-ignore
                         onValueChange={setGender}
                       >
                         <DropdownMenuRadioItem disabled value="Male">
@@ -302,7 +296,6 @@ const BuildingUpPageContent = () => {
                   <DropdownMenuContent className="  w-96">
                     <DropdownMenuRadioGroup
                       value={RelationStatus}
-                      //@ts-ignore
                       onValueChange={setRelationStatus}
                     >
                       <DropdownMenuRadioItem value="Single">

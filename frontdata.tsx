@@ -1,12 +1,15 @@
 import { Bookmark, BookMarked, Compass, Home, PlusCircle } from "lucide-react";
 import {
   BodyTypesProps,
+  BrandCategory,
+  ColorCategory,
   FeedNavigationItemsProps,
   HeadTypesProps,
   MessageTypeProps,
   NotificationTypeProps,
   PostTypeProps,
   SkinToneTypesProps,
+  WardrobeItemExample,
 } from "./fronttypes";
 
 export const headTypes: HeadTypesProps[] = [
@@ -254,52 +257,7 @@ export const posts: PostTypeProps[] = [
           "https://i.pinimg.com/736x/9a/26/d4/9a26d4f9f2b3f304826b7a20307a9f3f.jpg",
         content: "Love this style! Where can I get the sneakers?",
         timestamp: new Date(),
-        likes: 64,
-      },
-      {
-        id: "c1",
-        name: "John Doe",
-        profilePic:
-          "https://i.pinimg.com/736x/9a/26/d4/9a26d4f9f2b3f304826b7a20307a9f3f.jpg",
-        content: "Love this style! Where can I get the sneakers?",
-        timestamp: new Date(),
-        likes: 64,
-      },
-      {
-        id: "c1",
-        name: "John Doe",
-        profilePic:
-          "https://i.pinimg.com/736x/9a/26/d4/9a26d4f9f2b3f304826b7a20307a9f3f.jpg",
-        content: "Love this style! Where can I get the sneakers?",
-        timestamp: new Date(),
-        likes: 64,
-      },
-      {
-        id: "c1",
-        name: "John Doe",
-        profilePic:
-          "https://i.pinimg.com/736x/9a/26/d4/9a26d4f9f2b3f304826b7a20307a9f3f.jpg",
-        content: "Love this style! Where can I get the sneakers?",
-        timestamp: new Date(),
-        likes: 64,
-      },
-      {
-        id: "c1",
-        name: "John Doe",
-        profilePic:
-          "https://i.pinimg.com/736x/9a/26/d4/9a26d4f9f2b3f304826b7a20307a9f3f.jpg",
-        content: "Love this style! Where can I get the sneakers?",
-        timestamp: new Date(),
-        likes: 64,
-      },
-      {
-        id: "c1",
-        name: "John Doe",
-        profilePic:
-          "https://i.pinimg.com/736x/9a/26/d4/9a26d4f9f2b3f304826b7a20307a9f3f.jpg",
-        content: "Love this style! Where can I get the sneakers?",
-        timestamp: new Date(),
-        likes: 64,
+        likes: 0,
       },
     ],
     upVotes: 15,
@@ -382,5 +340,197 @@ export const posts: PostTypeProps[] = [
       secondaryColor: "",
       accentColor: "",
     },
+  },
+];
+
+export const favoriteColors: ColorCategory[] = [
+  {
+    name: "Neutrals",
+    examples: [
+      { name: "Beige", hex: "#F5F5DC" },
+      { name: "White", hex: "#FFFFFF" },
+      { name: "Black", hex: "#000000" },
+      { name: "Gray", hex: "#808080" },
+      { name: "Taupe", hex: "#483C32" },
+    ],
+  },
+  {
+    name: "Pastels",
+    examples: [
+      { name: "Baby Blue", hex: "#89CFF0" },
+      { name: "Lavender", hex: "#E6E6FA" },
+      { name: "Soft Pink", hex: "#FFB6C1" },
+      { name: "Mint Green", hex: "#98FB98" },
+      { name: "Peach", hex: "#FFDAB9" },
+    ],
+  },
+  {
+    name: "Earth Tones",
+    examples: [
+      { name: "Olive Green", hex: "#808000" },
+      { name: "Rust", hex: "#B7410E" },
+      { name: "Terracotta", hex: "#E2725B" },
+      { name: "Brown", hex: "#8B4513" },
+      { name: "Mustard", hex: "#FFDB58" },
+    ],
+  },
+  {
+    name: "Brights",
+    examples: [
+      { name: "Electric Blue", hex: "#007FFF" },
+      { name: "Hot Pink", hex: "#FF69B4" },
+      { name: "Lime Green", hex: "#32CD32" },
+      { name: "Neon Yellow", hex: "#FFFF00" },
+      { name: "Vivid Orange", hex: "#FF4500" },
+    ],
+  },
+  {
+    name: "Jewel Tones",
+    examples: [
+      { name: "Emerald Green", hex: "#50C878" },
+      { name: "Ruby Red", hex: "#9B111E" },
+      { name: "Sapphire Blue", hex: "#0F52BA" },
+      { name: "Amethyst Purple", hex: "#9966CC" },
+      { name: "Topaz Gold", hex: "#FFC87C" },
+    ],
+  },
+  {
+    name: "Muted Tones",
+    examples: [
+      { name: "Dusty Rose", hex: "#DCAE96" },
+      { name: "Muted Sage", hex: "#A8BBA2" },
+      { name: "Washed Denim", hex: "#7E99A4" },
+      { name: "Soft Plum", hex: "#967E76" },
+      { name: "Pale Gold", hex: "#E6CBA8" },
+    ],
+  },
+  {
+    name: "Warm Colors",
+    examples: [
+      { name: "Red", hex: "#FF0000" },
+      { name: "Orange", hex: "#FFA500" },
+      { name: "Yellow", hex: "#FFFF00" },
+      { name: "Coral", hex: "#FF6F61" },
+      { name: "Peach", hex: "#FFDAB9" },
+    ],
+  },
+  {
+    name: "Cool Colors",
+    examples: [
+      { name: "Blue", hex: "#0000FF" },
+      { name: "Green", hex: "#008000" },
+      { name: "Purple", hex: "#800080" },
+      { name: "Teal", hex: "#008080" },
+      { name: "Turquoise", hex: "#40E0D0" },
+    ],
+  },
+];
+
+export const favoriteBrands: BrandCategory[] = [
+  {
+    name: "Luxury",
+    examples: [
+      {
+        name: "Gucci",
+        logo: "https://cdn.logojoy.com/wp-content/uploads/20240306150540/1992-Gucci-logo-600x319.png",
+      },
+      {
+        name: "Louis Vuitton",
+        logo: "https://static.vecteezy.com/system/resources/previews/023/871/227/non_2x/louis-vuitton-brand-logo-pink-symbol-design-clothes-fashion-illustration-with-black-background-free-vector.jpg",
+      },
+      {
+        name: "Prada",
+        logo: "https://logo.com/image-cdn/images/kts928pd/production/5be7f05ad50b4254e440898461e4ad1026a11723-900x592.png?w=1920&q=72&fm=webp",
+      },
+      {
+        name: "Chanel",
+        logo: "https://static.vecteezy.com/system/resources/previews/023/400/665/non_2x/chanel-brand-clothes-logo-symbol-black-design-fashion-illustration-free-vector.jpg",
+      },
+      {
+        name: "Versace",
+        logo: "https://static.vecteezy.com/system/resources/previews/024/131/544/non_2x/versace-brand-symbol-brown-logo-clothes-design-icon-abstract-illustration-with-black-background-free-vector.jpg",
+      },
+    ],
+  },
+  {
+    name: "Streetwear",
+    examples: [
+      {
+        name: "Nike",
+        logo: "https://masterbundles.com/wp-content/uploads/2022/03/1-nike-logo-design-%E2%80%93-history-meaning-and-evolution.png",
+      },
+      {
+        name: "Adidas",
+        logo: "https://cdn-icons-png.flaticon.com/512/731/731962.png",
+      },
+      {
+        name: "Supreme",
+        logo: "https://static.vecteezy.com/system/resources/previews/023/871/581/non_2x/supreme-logo-brand-red-symbol-clothes-design-icon-abstract-illustration-with-black-background-free-vector.jpg",
+      },
+      {
+        name: "Off-White",
+        logo: "https://www.vectorkhazana.com/assets/images/products/Off_White_Symbol.png",
+      },
+      {
+        name: "Bape",
+        logo: "https://1000logos.net/wp-content/uploads/2018/04/Bape-logo.jpg",
+      },
+    ],
+  },
+  {
+    name: "Casual",
+    examples: [
+      {
+        name: "Zara",
+        logo: "https://logomakerr.ai/blog/wp-content/uploads/2022/08/2019-to-Present-Zara-logo-design-1024x538.jpg",
+      },
+      {
+        name: "H&M",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMAaKiaRYNTRewPvMiE3pTI6o9LoTX1gpOtw&s",
+      },
+      {
+        name: "Uniqlo",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/UNIQLO_logo.svg/2058px-UNIQLO_logo.svg.png",
+      },
+      {
+        name: "Levi’s",
+        logo: "https://media.designrush.com/inspirations/758970/conversions/1-preview.jpg",
+      },
+      {
+        name: "Tommy Hilfiger",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uoAI7Hl964hOvaINbuJw_--r5T7SvZBkpQ&s",
+      },
+    ],
+  },
+];
+
+export const wardrobe: WardrobeItemExample[] = [
+  {
+    name: "Denim Jacket",
+    brand: "Levi's",
+    image:
+      "https://lsco.scene7.com/is/image/lsco/723340403-front-pdp-ld?$laydownfront$",
+    color: "#1E3A8A", // Dark Blue
+  },
+  {
+    name: "Hoodie",
+    brand: "Nike",
+    image:
+      "https://threadlogic.com/cdn/shop/files/NIKE-Club-Fleece-Pullover-Hoodie-Black-S-5_800x.jpg?v=1713972442",
+    color: "#000000", // Black
+  },
+  {
+    name: "Sneakers",
+    brand: "Adidas",
+    image:
+      "https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_600,w_600/shoes_women_tcc_d_234be42564.jpg",
+    color: "#FFFFFF", // White
+  },
+  {
+    name: "Chinos",
+    brand: "Zara",
+    image:
+      "https://static.zara.net/assets/public/3843/2a72/78ee493fae0c/391d16336fc5/09959665711-e1/09959665711-e1.jpg?ts=1738259941969&w=744&f=auto",
+    color: "#D2B48C", // Tan/Beige
   },
 ];

@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
-import { Input } from "../ui/input";
 import { ArrowRight, Triangle } from "lucide-react";
-import { Button, buttonVariants } from "../ui/button";
-import { BsGoogle } from "react-icons/bs";
-import Link from "next/link";
 import { motion } from "motion/react";
+import Link from "next/link";
+import { BsGoogle } from "react-icons/bs";
+import { Button, buttonVariants } from "../ui/button";
+import { Input } from "../ui/input";
 
 const SignUpContent = () => {
   return (

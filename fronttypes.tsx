@@ -98,3 +98,30 @@ export type PostTypeProps = {
     accentColor: string;
   };
 };
+
+export type ColorExample = {
+  name: string;
+  hex: string;
+};
+
+export type ColorCategory = {
+  name: string;
+  examples: ColorExample[];
+};
+
+export type BrandExample = {
+  name: string;
+  logo: string; // URL to brand logo
+};
+
+export type BrandCategory = {
+  name: string;
+  examples: BrandExample[];
+};
+
+export type WardrobeItemExample = {
+  name: string;
+  brand: string;
+  image: string; // URL to item image
+  color: string;
+};
