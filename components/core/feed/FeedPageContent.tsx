@@ -165,12 +165,12 @@ const FeedPost = ({
                 src={outfitImage}
                 className="hidden md:block rounded-xl max-w-sm"
               />
-              <div className=" py-0 flex flex-col justify-between items-center h-full">
+              <div className=" py-0 md:p-5 flex flex-col justify-between items-center h-full">
                 <div>
                   <div className=" text-sm font-semibold opacity-75">
                     Clothes Mentioned
                   </div>
-                  <ScrollArea className=" max-w-xs mx-auto pb-3">
+                  <ScrollArea className=" max-w-xs md:max-w-full mx-auto pb-3">
                     <div className="flex w-full  overflow-x-scroll items-stretch gap-0.5 mt-1">
                       {Object.entries(outfit).map(([key, item]) => (
                         <div

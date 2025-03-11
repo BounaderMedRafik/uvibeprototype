@@ -41,7 +41,7 @@ const FeedNavigation = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full bg-background/90 backdrop-blur-md z-50 shadow-md">
-      <div className="wrapper py-2 px-4 flex items-center justify-center gap-2 ">
+      <div className="wrapper py-2 px-4 flex items-center justify-center md:justify-between gap-2 ">
         {/* Logo and Search */}
         <div className="flex items-center gap-4">
           <Link href={"/feed"}>
@@ -64,7 +64,7 @@ const FeedNavigation = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center">
           {FeedNavigationItems.map((item, i) => (
             <Link
               key={i}
@@ -87,10 +87,12 @@ const FeedNavigation = () => {
           <ProfileButton />
         </div>
 
-        <CreatePost />
-        <Messages />
-        <Notification />
-        <ProfileButton />
+        <div className="block md:hidden">
+          <CreatePost />
+          <Messages />
+          <Notification />
+          <ProfileButton />
+        </div>
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
