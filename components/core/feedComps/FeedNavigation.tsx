@@ -87,7 +87,7 @@ const FeedNavigation = () => {
           <ProfileButton />
         </div>
 
-        <div className="block md:hidden">
+        <div className=" md:hidden flex items-center gap-1.5">
           <CreatePost />
           <Messages />
           <Notification />
