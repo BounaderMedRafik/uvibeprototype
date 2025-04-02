@@ -228,19 +228,6 @@ const ProfilePageContent = () => {
               </motion.div>
             )}
           </div>
-
-          <div className=" h-px w-1/3 mx-auto my-6 bg-foreground/25" />
-
-          {/* <div>
-            <div className=" text-xl flex items-center gap-2">
-              <div>
-                <RiBubbleChartFill size={15} />
-              </div>
-              <div>Your Bubbles</div>
-            </div>
-
-            <YourBubbles />
-          </div> */}
         </div>
       </div>
     </div>

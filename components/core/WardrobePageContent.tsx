@@ -782,7 +782,7 @@ const CreateFit = () => {
         return;
       }
 
-      alert("Fit saved successfully!");
+      toast.success("Fit saved successfully!");
       setStep(0);
       setFitName("");
       setFitDescription("");
@@ -1043,7 +1043,13 @@ const CreateFit = () => {
   );
 };
 
-const ClothingPieces = ({ clerkID }: { clerkID: string | undefined }) => {
+export const ClothingPieces = ({
+  clerkID,
+  mansoryDefault,
+}: {
+  clerkID: string | undefined;
+  mansoryDefault?: number;
+}) => {
   const { pieces, isLoading, error } = useFetchClothingPieces(clerkID);
   const { fits } = useFetchFits(clerkID);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
@@ -1057,7 +1063,7 @@ const ClothingPieces = ({ clerkID }: { clerkID: string | undefined }) => {
 
   // Masonry breakpoint settings
   const breakpointColumnsObj = {
-    default: 4, // 4 columns on large screens
+    default: mansoryDefault ? mansoryDefault : 4, // 4 columns on large screens
     1100: 3, // 3 columns on medium screens
     768: 2, // 2 columns on tablets
     500: 2, // 1 column on mobile

@@ -16,7 +16,12 @@ const useDeleteFit = () => {
         .delete()
         .eq("fitid", fitid);
 
-      if (error || DeleteSaveError) {
+      const { error: DeletComments } = await supabase
+        .from("comments")
+        .delete()
+        .eq("postid", fitid);
+
+      if (error || DeleteSaveError || DeletComments) {
         console.log("eroor deleting ", error);
         throw error;
       } else {

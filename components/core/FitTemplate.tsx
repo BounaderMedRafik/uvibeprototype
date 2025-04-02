@@ -249,26 +249,45 @@ const FitTemplate: React.FC<ClothingFit> = ({
           </div>
         </DialogContent>
 
-        <img
-          src={face?.image || undefined}
-          className="w-full aspect-square h-full rounded-xl object-cover"
-          alt={face?.name || "Facewear"}
-        />
-        <img
-          src={body?.image || undefined}
-          className="w-full aspect-square h-full rounded-xl object-cover"
-          alt={body?.name || "Topwear"}
-        />
-        <img
-          src={legs?.image || undefined}
-          className="w-full aspect-square h-full rounded-xl object-cover"
-          alt={legs?.name || "Bottomwear"}
-        />
-        <img
-          src={feet?.image || undefined}
-          className="w-full aspect-square h-full rounded-xl object-cover"
-          alt={feet?.name || "Footwear"}
-        />
+        {face.image ? (
+          <img
+            src={face?.image || undefined}
+            className="w-full aspect-square h-full rounded-xl object-cover"
+            alt={face?.name || "Facewear"}
+          />
+        ) : (
+          <Skeleton className=" w-full aspect-square rounded-lg" />
+        )}
+
+        {body.image ? (
+          <img
+            src={body?.image || undefined}
+            className="w-full aspect-square h-full rounded-xl object-cover"
+            alt={body?.name || "Topwear"}
+          />
+        ) : (
+          <Skeleton className=" w-full aspect-square rounded-lg" />
+        )}
+
+        {legs.image ? (
+          <img
+            src={legs?.image || undefined}
+            className="w-full aspect-square h-full rounded-xl object-cover"
+            alt={legs?.name || "Bottomwear"}
+          />
+        ) : (
+          <Skeleton className=" w-full aspect-square rounded-lg" />
+        )}
+
+        {feet.image ? (
+          <img
+            src={feet?.image || undefined}
+            className="w-full aspect-square h-full rounded-xl object-cover"
+            alt={feet?.name || "Footwear"}
+          />
+        ) : (
+          <Skeleton className=" w-full aspect-square rounded-lg" />
+        )}
       </div>
     </Dialog>
   );
@@ -414,6 +433,7 @@ const CommentCard: React.FC<CommentType> = ({
   const [expanded, setExpanded] = useState(false);
   const { supaUser, isLoadingSupaUser } = useGetSupaUser(senderid);
   const urlRegex = /(https?:\/\/[\w.-]+)/g;
+  const { user } = useUser();
 
   const formatComment = (text: string) => {
     return text.split(urlRegex).map((part, index) => {
@@ -452,7 +472,9 @@ const CommentCard: React.FC<CommentType> = ({
             {isLoadingSupaUser ? (
               <Skeleton className="size-5 rounded-full" />
             ) : (
-              <Link href={`/user/${senderid}`}>
+              <Link
+                href={senderid == user?.id ? "/profile" : `/user/${senderid}`}
+              >
                 <img
                   className="size-5 rounded-full"
                   src={supaUser?.pfp}
@@ -486,11 +508,6 @@ const CommentCard: React.FC<CommentType> = ({
             </button>
           )}
         </div>
-      </div>
-
-      {/* Like Button */}
-      <div className="col-span-1 flex items-start justify-end">
-        <Heart size={12} />
       </div>
     </div>
   );

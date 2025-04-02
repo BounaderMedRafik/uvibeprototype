@@ -65,66 +65,6 @@ export type MessageTypeProps = {
   read: boolean;
 };
 
-export type PostTypeProps = {
-  id: string;
-  title: string;
-  description: string;
-  outfitImage: string;
-  outfit: {
-    headwear: {
-      name: string;
-      image: string;
-      originalSource: string;
-    };
-    top: {
-      name: string;
-      image: string;
-      originalSource: string;
-    };
-    bottom: {
-      name: string;
-      image: string;
-      originalSource: string;
-    };
-    footwear: {
-      name: string;
-      image: string;
-      originalSource: string;
-    };
-    accessory: {
-      name: string;
-      image: string;
-      originalSource: string;
-    };
-  };
-  comments: {
-    id: string;
-    name: string;
-    profilePic: string;
-    content: string;
-    timestamp: Date;
-    likes: number;
-  }[];
-  upVotes: number;
-  downVotes: number;
-  category: string;
-  createdAt: Date;
-
-  sender: {
-    id: string;
-    name: string;
-    profilePic: string;
-  };
-
-  saved: boolean;
-
-  colorScheme: {
-    mainColor: string;
-    secondaryColor: string;
-    accentColor: string;
-  };
-};
-
 export type ColorExample = {
   name: string;
   hex: string;

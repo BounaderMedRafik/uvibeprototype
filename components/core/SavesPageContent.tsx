@@ -39,7 +39,7 @@ const SavesPageContent = () => {
 };
 
 // 🏷️ New Component: Fetches and Displays a Single Fit
-const SavedFitItem = ({ fitid }: { fitid: string }) => {
+export const SavedFitItem = ({ fitid }: { fitid: string }) => {
   const { fit, isLoading } = useFetchFitById(fitid);
 
   if (isLoading) return <div>Loading...</div>;
