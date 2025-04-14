@@ -284,37 +284,6 @@ export const favoriteBrands: BrandCategory[] = [
   },
 ];
 
-export const wardrobe: WardrobeItemExample[] = [
-  {
-    name: "Denim Jacket",
-    brand: "Levi's",
-    image:
-      "https://lsco.scene7.com/is/image/lsco/723340403-front-pdp-ld?$laydownfront$",
-    color: "#1E3A8A", // Dark Blue
-  },
-  {
-    name: "Hoodie",
-    brand: "Nike",
-    image:
-      "https://threadlogic.com/cdn/shop/files/NIKE-Club-Fleece-Pullover-Hoodie-Black-S-5_800x.jpg?v=1713972442",
-    color: "#000000", // Black
-  },
-  {
-    name: "Sneakers",
-    brand: "Adidas",
-    image:
-      "https://brand.assets.adidas.com/image/upload/f_auto,q_auto:best,fl_lossy/if_w_gt_600,w_600/shoes_women_tcc_d_234be42564.jpg",
-    color: "#FFFFFF", // White
-  },
-  {
-    name: "Chinos",
-    brand: "Zara",
-    image:
-      "https://static.zara.net/assets/public/3843/2a72/78ee493fae0c/391d16336fc5/09959665711-e1/09959665711-e1.jpg?ts=1738259941969&w=744&f=auto",
-    color: "#D2B48C", // Tan/Beige
-  },
-];
-
 export const clothingBrands = [
   // Luxury Fashion Brands
   "Louis Vuitton",
