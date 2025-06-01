@@ -91,7 +91,8 @@ const ClothPieceTemplate: React.FC<ClothingPiece> = ({
               <div className="text-xs opacity-75 mt-2">{description}</div>
 
               <div className="my-3 bg-foreground/25 h-px w-full" />
-              <div className="grid gap-1">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
                   "Brand",
                   "Gender",
@@ -114,14 +115,16 @@ const ClothPieceTemplate: React.FC<ClothingPiece> = ({
                     </div>
                   </div>
                 ))}
+
                 <div className="text-sm opacity-75 flex items-center gap-1">
                   <ChevronRight size={10} />
                   <div>Color : </div>
                   <div
                     style={{ backgroundColor: color }}
-                    className="size-5 ml-1 rounded-sm border-foreground/20"
+                    className="size-5 ml-1 rounded-sm border border-foreground/20"
                   />
                 </div>
+
                 {forsale && (
                   <div className="text-sm opacity-75 flex items-center gap-1">
                     <ChevronRight size={10} />
@@ -131,8 +134,9 @@ const ClothPieceTemplate: React.FC<ClothingPiece> = ({
                     </div>
                   </div>
                 )}
+
                 {source && (
-                  <div className="text-sm opacity-75 flex items-center gap-1">
+                  <div className="text-sm opacity-75 flex items-center gap-1 col-span-full">
                     <ChevronRight size={10} />
                     <div>
                       Source :{" "}
@@ -147,6 +151,7 @@ const ClothPieceTemplate: React.FC<ClothingPiece> = ({
                   </div>
                 )}
               </div>
+
               <div className="mt-5 text-sm opacity-75 flex items-center gap-1">
                 <div className="flex flex-wrap items-center gap-0.5">
                   {tags.map((item, i) => (

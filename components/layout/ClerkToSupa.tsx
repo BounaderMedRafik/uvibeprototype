@@ -170,12 +170,12 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
             />
             {step == 0 ? (
               <>
-                <div className=" font-Poppins text-xl font-semibold w-full">
+                <div className="font-Poppins text-xl font-semibold w-full">
                   Basic Information
                 </div>
-                <div className=" font-Poppins mt-1 max-w-xs  w-full text-xs opacity-75  text-start ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Laborum libero eum illo.
+                <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
+                  Tell us about yourself to get better style recommendations and
+                  personalized shopping suggestions.
                 </div>
 
                 <div className=" mt-4">
@@ -287,12 +287,12 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
               </>
             ) : step == 1 ? (
               <>
-                <div className=" font-Poppins text-xl font-semibold w-full">
+                <div className="font-Poppins text-xl font-semibold w-full">
                   Head Shape
                 </div>
-                <div className=" font-Poppins mt-1 max-w-xs  w-full text-xs opacity-75  text-start ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Laborum libero eum illo.
+                <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
+                  Select your head shape to discover the most flattering
+                  hairstyles, hats, and eyewear that complement your features.
                 </div>
 
                 <div className=" grid grid-cols-3 gap-3  mt-4 ">
@@ -328,12 +328,13 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
               </>
             ) : step == 2 ? (
               <>
-                <div className=" font-Poppins text-xl font-semibold w-full">
+                <div className="font-Poppins text-xl font-semibold w-full">
                   Body Shape
                 </div>
-                <div className=" font-Poppins mt-1 max-w-xs  w-full text-xs opacity-75  text-start ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Laborum libero eum illo.
+                <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
+                  Identify your body type to receive personalized clothing
+                  recommendations that flatter your natural proportions and
+                  highlight your best features.
                 </div>
                 <div>
                   <div className=" grid grid-cols-2 gap-3  mt-4 ">
@@ -370,12 +371,12 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
               </>
             ) : step == 3 ? (
               <>
-                <div className=" font-Poppins text-xl font-semibold w-full">
-                  Specified Questions
+                <div className="font-Poppins text-xl font-semibold w-full">
+                  Your Style Profile
                 </div>
-                <div className=" font-Poppins mt-1 max-w-xs  w-full text-xs opacity-75  text-start ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Laborum libero eum illo.
+                <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
+                  These questions help us understand your unique fashion
+                  personality and preferences for more accurate recommendations.
                 </div>
 
                 <div className=" mt-3">
@@ -468,12 +469,13 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
               </>
             ) : step == 4 ? (
               <>
-                <div className=" font-Poppins text-xl font-semibold w-full">
+                <div className="font-Poppins text-xl font-semibold w-full">
                   Skin Tone
                 </div>
-                <div className=" font-Poppins mt-1 max-w-xs  w-full text-xs opacity-75  text-start ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Laborum libero eum illo.
+                <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
+                  Select your skin tone to receive personalized color
+                  recommendations that complement your natural complexion
+                  beautifully.
                 </div>
 
                 <div className=" grid-cols-4 grid w-full mt-4">
@@ -519,12 +521,12 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
               </>
             ) : step == 5 ? (
               <>
-                <div className=" font-Poppins text-xl font-semibold w-full">
+                <div className="font-Poppins text-xl font-semibold w-full">
                   Thank you for your time!
                 </div>
-                <div className=" font-Poppins mt-1 max-w-xs  w-full text-xs opacity-75  text-start ">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Laborum libero eum illo.
+                <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
+                  We&apos;re now creating your personalized style profile.
+                  You&apos;ll receive your first recommendations shortly!
                 </div>
 
                 <div className=" mt-3">

@@ -1,4 +1,4 @@
-import { Bookmark, Compass, Heart, Home } from "lucide-react";
+import { Bookmark, Compass, Home } from "lucide-react";
 import { TbShirt } from "react-icons/tb";
 import {
   BodyTypesProps,
@@ -11,7 +11,6 @@ import {
   SizeCategory,
   SkinToneTypesProps,
   TailwindColor,
-  WardrobeItemExample,
 } from "./type";
 
 export const buttonIconSize = 16;

@@ -42,10 +42,13 @@ import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
 import { CgColorPicker } from "react-icons/cg";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import useFollowedTags from "@/hooks/useFollowedTags";
+import FollowingList from "./FollowingList";
 
 const ProfilePageContent = () => {
   const { user, isLoaded } = useUser();
   const { supaUser, isLoadingSupaUser } = useGetSupaUser(user?.id);
+
   return (
     <div className=" -mt-24">
       <div className=" -mt-24 ">
@@ -80,16 +83,7 @@ const ProfilePageContent = () => {
               {/* <FollowersList userid={user?.id || undefined} /> */}
               <div>24 follower</div>
 
-              {/* <FollowingList userid={user?.id || undefined} /> */}
-              <div>260 followings</div>
-              {/* 
-              {isLoading ? (
-                <div>...</div>
-              ) : (
-                <div className=" text-sm opacity-75 hover:opacity-100 transition-all">
-                  <span className=" font-bold">{posts.length}</span> Bubble
-                </div>
-              )} */}
+              <FollowingList />
             </div>
           </div>
 

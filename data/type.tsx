@@ -161,3 +161,10 @@ export type SaveProperties = {
   fitid: string;
   saverid: string;
 };
+
+export type TagSubProperties = {
+  uuid: string;
+  created_at: string;
+  userid: string;
+  tag: string;
+};

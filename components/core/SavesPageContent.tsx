@@ -14,8 +14,8 @@ const SavesPageContent = () => {
       <div className="max-w-2xl mx-auto">
         <div className="text-xl opacity-75">Saved outfits</div>
         <div className="max-w-sm opacity-50 text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, ab
-          eos? Facilis, magni voluptate.
+          Browse and manage your favorite clothing combinations. Save outfits
+          for different occasions or seasons.
         </div>
       </div>
 
@@ -27,7 +27,7 @@ const SavesPageContent = () => {
             No saved outfits yet.
           </div>
         ) : (
-          <div className="grid grid-cols-4 mt-10">
+          <div className="grid grid-cols-4 mt-10 gap-3">
             {savedFits.map((savedFit) => (
               <SavedFitItem key={savedFit.fitid} fitid={savedFit.fitid} />
             ))}

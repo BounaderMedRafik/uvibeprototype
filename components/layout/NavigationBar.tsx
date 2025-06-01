@@ -70,14 +70,14 @@ const NavigationBar = () => {
 
 const SearchComponent = () => {
   return (
-    <div>
+    <Link href={"/search"}>
       <div className=" flex  cursor-pointer hover:bg-foreground/5 transition-all items-center gap-0.5 px-2 py-1 border   border-foreground/10 rounded-full">
         <div>
           <Search size={12} />
         </div>
         <div className=" text-xs opacity-75">Search</div>
       </div>
-    </div>
+    </Link>
   );
 };
 

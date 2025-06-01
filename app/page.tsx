@@ -1,3 +1,9 @@
+import FeedPageContent from "@/components/core/FeedPageContent";
+
 export default function Home() {
-  return <div>Hello there</div>;
+  return (
+    <div>
+      <FeedPageContent />
+    </div>
+  );
 }

@@ -3,9 +3,19 @@ import useFetchClothesToExplore from "@/hooks/useFetchClothesToExplore";
 import React from "react";
 import ClothPieceTemplate from "./ClothPieceTemplate";
 import Masonry from "react-masonry-css";
+import { Button } from "../ui/button";
+import useToggleFollowTag from "@/hooks/useToggleFollowTag";
+import { replacePercent } from "@/lib/space";
 
 const SingularExplorePageContent = ({ id }: { id: string }) => {
+  console.log(id);
+  id = replacePercent(id);
   const { clothingPieces, isLoading, error } = useFetchClothesToExplore(id);
+  const {
+    isFollowing,
+    toggleFollow,
+    loading: followLoading,
+  } = useToggleFollowTag(id);
 
   const breakpointColumnsObj = {
     default: 4, // 4 columns on large screens
@@ -29,10 +39,17 @@ const SingularExplorePageContent = ({ id }: { id: string }) => {
   if (clothingPieces.length === 0) {
     return (
       <div className="wrapper">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-xl opacity-75">{id}</div>
-          <div className="max-w-sm opacity-50 text-xs">
-            Check outfits and clothes all about {id}
+        <div className="max-w-2xl mx-auto flex items-center justify-between">
+          <div>
+            <div className="text-xl opacity-75">{id}</div>
+            <div className="max-w-sm opacity-50 text-xs">
+              Check outfits and clothes all about {id}
+            </div>
+          </div>
+          <div>
+            <Button size="sm" onClick={toggleFollow} disabled={followLoading}>
+              {followLoading ? "..." : isFollowing ? "Unfollow" : "Follow"}
+            </Button>
           </div>
         </div>
         <div className="mt-10 text-center text-xs opacity-75 font-mono">
@@ -49,10 +66,17 @@ const SingularExplorePageContent = ({ id }: { id: string }) => {
 
   return (
     <div className="wrapper">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-xl opacity-75">{id}</div>
-        <div className="max-w-sm opacity-50 text-xs">
-          Check outfits and clothes all about {id}
+      <div className="max-w-2xl mx-auto flex items-center justify-between">
+        <div>
+          <div className="text-xl opacity-75">{id}</div>
+          <div className="max-w-sm opacity-50 text-xs">
+            Check outfits and clothes all about {id}
+          </div>
+        </div>
+        <div>
+          <Button size="sm" onClick={toggleFollow} disabled={followLoading}>
+            {followLoading ? "..." : isFollowing ? "Unfollow" : "Follow"}
+          </Button>
         </div>
       </div>
       <div className="mt-10">
