@@ -304,7 +304,7 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
                       key={i}
                       className={cn(
                         " border hover:opacity-75  transition-all ease-in-out  duration-300 cursor-pointer border-foreground/10 relative aspect-square overflow-hidden rounded-lg",
-                        faceType == item.head && "border-primary/75"
+                        faceType == item.head && "border-red-600/75"
                       )}
                     >
                       <img
@@ -319,7 +319,7 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
                         )}
                       />
 
-                      <div className=" absolute bottom-2 z-20 text-xs left-1/2 -translate-x-1/2 bg-accent text-background font-Poppins px-3 py-0.5 rounded-md">
+                      <div className=" absolute text-foreground bottom-2 z-20 text-xs left-1/2 -translate-x-1/2 bg-accent  font-Poppins px-3 py-0.5 rounded-md">
                         {item.head}
                       </div>
                     </div>
@@ -361,7 +361,7 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
                           )}
                         />
 
-                        <div className=" absolute bottom-2 z-20 text-xs left-1/2 -translate-x-1/2 bg-accent text-background text-center font-Poppins px-3 py-0.5 rounded-md">
+                        <div className=" absolute bottom-2 z-20 text-xs left-1/2 -translate-x-1/2 bg-accent text-foreground text-center font-Poppins px-3 py-0.5 rounded-md">
                           {item.body}
                         </div>
                       </div>

@@ -10,6 +10,7 @@ import {
 import { ChevronRight, Hash } from "lucide-react";
 import moment from "moment";
 import Link from "next/link";
+import useGetSupaUser from "@/hooks/useGetSupaUser";
 
 const ClothPieceTemplate: React.FC<ClothingPiece> = ({
   pieceid,
@@ -32,6 +33,7 @@ const ClothPieceTemplate: React.FC<ClothingPiece> = ({
   forsale,
   tags,
 }) => {
+  const { supaUser } = useGetSupaUser(senderid);
   return (
     <div>
       <Dialog>
@@ -84,6 +86,22 @@ const ClothPieceTemplate: React.FC<ClothingPiece> = ({
             </div>
 
             <div className="md:w-2/3 p-3">
+              <div className="flex gap-2 mb-7">
+                <div>
+                  <img
+                    className=" size-10 rounded-full"
+                    src={supaUser?.pfp}
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <div className=" text-xs opacity-75">
+                    @{supaUser?.username}
+                  </div>
+                  <div className=" text-sm">{supaUser?.name}</div>
+                </div>
+              </div>
+
               <div className="text-sm opacity-75 flex items-center gap-1">
                 <ChevronRight size={10} />
                 <div>Description</div>

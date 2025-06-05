@@ -1,13 +1,20 @@
 "use client";
-import { useSignIn, useSignUp } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignUpButton,
+  useSignIn,
+  useSignUp,
+} from "@clerk/nextjs";
 import { OAuthStrategy } from "@clerk/types";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { BsDiscord, BsGithub } from "react-icons/bs";
 import { Button } from "../ui/button";
+import { UserCircle } from "lucide-react";
 
 const SignInSignUp = () => {
   const [signup, setSignup] = useState(false);
+  const [cred, setCred] = useState(false);
 
   const { signIn } = useSignIn();
   const { signUp } = useSignUp();
@@ -159,10 +166,29 @@ const SignInSignUp = () => {
               }}
               className=" w-full mt-4 space-y-0.5"
             >
+              <SignUpButton mode="modal">
+                <Button
+                  onClick={() => {
+                    setCred(true);
+                  }}
+                  variant={"default"}
+                  className=" w-full relative"
+                >
+                  <div className=" flex items-center gap-2">
+                    <div>
+                      <UserCircle size={10} />
+                    </div>
+                    <div>Continue with Email</div>
+                  </div>
+                </Button>
+              </SignUpButton>
+
               <Button
                 onClick={() => {
+                  setCred(false);
                   signUpWith("oauth_github");
                 }}
+                variant={"secondary"}
                 className=" w-full relative"
               >
                 <div className=" flex items-center gap-2">
@@ -174,10 +200,11 @@ const SignInSignUp = () => {
               </Button>
 
               <Button
+                variant={"secondary"}
                 onClick={() => {
+                  setCred(false);
                   signUpWith("oauth_discord");
                 }}
-                variant={"secondary"}
                 className=" w-full relative"
               >
                 <div className=" flex items-center gap-2">
@@ -188,12 +215,14 @@ const SignInSignUp = () => {
                 </div>
               </Button>
 
-              <div
-                id="clerk-captcha"
-                data-cl-theme="dark"
-                data-cl-size="flexible"
-                data-cl-language="es-ES"
-              />
+              {!cred && (
+                <div
+                  id="clerk-captcha"
+                  data-cl-theme="dark"
+                  data-cl-size="flexible"
+                  data-cl-language="es-ES"
+                />
+              )}
 
               <div
                 onClick={() => {
@@ -311,11 +340,29 @@ const SignInSignUp = () => {
             }}
             className=" w-full mt-4 space-y-0.5"
           >
+            <SignInButton mode="modal">
+              <Button
+                onClick={() => {
+                  setCred(true);
+                }}
+                variant={"default"}
+                className=" w-full relative"
+              >
+                <div className=" flex items-center gap-2">
+                  <div>
+                    <UserCircle size={10} />
+                  </div>
+                  <div>Continue with Email</div>
+                </div>
+              </Button>
+            </SignInButton>
+
             <Button
               onClick={() => {
                 signInWith("oauth_github");
               }}
               className=" w-full relative"
+              variant={"secondary"}
             >
               <div className=" flex items-center gap-2">
                 <div>

@@ -71,20 +71,6 @@ const ProfilePageContent = () => {
                 <Skeleton className=" w-14 h-3 mb-3" />
               )}
             </div>
-
-            <div className=" w-full flex items-center justify-end gap-4">
-              <div className=" text-sm opacity-75 hover:opacity-100 transition-all flex items-center gap-1">
-                <span className=" font-bold mt-0.5">687</span>{" "}
-                <Heart className=" fill-foreground" size={buttonIconSize - 3} />
-              </div>
-
-              <div>•</div>
-
-              {/* <FollowersList userid={user?.id || undefined} /> */}
-              <div>24 follower</div>
-
-              <FollowingList />
-            </div>
           </div>
 
           <div className="flex items-center justify-between">

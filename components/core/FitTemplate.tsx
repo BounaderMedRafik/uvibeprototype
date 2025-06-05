@@ -94,7 +94,7 @@ const FitTemplate: React.FC<ClothingFit> = ({
               href={
                 user?.id == supaUser?.userid
                   ? "/profile"
-                  : `/user/${supaUser?.userid}`
+                  : `/profile/${supaUser?.userid}`
               }
             >
               <img
@@ -473,7 +473,9 @@ const CommentCard: React.FC<CommentType> = ({
               <Skeleton className="size-5 rounded-full" />
             ) : (
               <Link
-                href={senderid == user?.id ? "/profile" : `/user/${senderid}`}
+                href={
+                  senderid == user?.id ? "/profile" : `/profile/${senderid}`
+                }
               >
                 <img
                   className="size-5 rounded-full"

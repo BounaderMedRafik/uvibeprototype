@@ -61,7 +61,7 @@ const OutfitPageContent = ({ id }: { id: string }) => {
             href={
               user?.id === supaUser?.userid
                 ? "/profile"
-                : `/user/${supaUser?.userid}`
+                : `/profile/${supaUser?.userid}`
             }
           >
             <div className="flex gap-2 mb-4 w-full hover:opacity-75">
