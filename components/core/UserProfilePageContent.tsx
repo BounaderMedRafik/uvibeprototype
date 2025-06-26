@@ -414,9 +414,11 @@ const SavedOutfits = ({ userid }: { userid: string | undefined }) => {
             No saved outfits yet.
           </div>
         ) : (
-          <div className="grid grid-cols-4 mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 mt-10">
             {savedFits.map((savedFit) => (
-              <SavedFitItem key={savedFit.fitid} fitid={savedFit.fitid} />
+              <div key={savedFit.fitid}>
+                <SavedFitItem fitid={savedFit.fitid} />
+              </div>
             ))}
           </div>
         )}

@@ -23,39 +23,73 @@ import Link from "next/link";
 
 const ProfileInWardrobe = () => {
   const { user } = useUser();
+  const role = user?.unsafeMetadata.role;
+
   return (
-    <div className=" wrapper pb-24">
+    <div className="wrapper pb-24 px-4 sm:px-0">
       <div>
-        <div className=" text-xl  opacity-75">
-          {user?.firstName}&apos;s Wardrobe
+        <div className="text-xl opacity-75">
+          <span>{user?.firstName}&apos;s</span>{" "}
+          {role === "pro" ? "Shop" : "Wardrobe"}
         </div>
 
-        <Tabs className="  mt-4" defaultValue="home">
-          <TabsList className=" font-mono mx-auto md:mx-0">
-            <TabsTrigger value="home">Home</TabsTrigger>
-            <TabsTrigger value="clothes">Clothes</TabsTrigger>
-            <TabsTrigger value="outfits">Outfits </TabsTrigger>
-            <TabsTrigger value="savedoutfits">Saved outfits</TabsTrigger>
-            <TabsTrigger value="comments">comments</TabsTrigger>
+        <Tabs className="mt-4" defaultValue="home">
+          <TabsList className="font-mono md:w-full  max-w-96 md:max-w-max overflow-x-auto">
+            <div className="flex space-x-1 ">
+              <TabsTrigger
+                value="home"
+                className="text-xs sm:text-sm px-2 sm:px-4"
+              >
+                Home
+              </TabsTrigger>
+              <TabsTrigger
+                value="clothes"
+                className="text-xs sm:text-sm px-2 sm:px-4"
+              >
+                Clothes
+              </TabsTrigger>
+              <TabsTrigger
+                value="outfits"
+                className="text-xs sm:text-sm px-2 sm:px-4"
+              >
+                Outfits
+              </TabsTrigger>
+              {role !== "pro" && (
+                <TabsTrigger
+                  value="savedoutfits"
+                  className="text-xs sm:text-sm px-2 sm:px-4"
+                >
+                  Saved
+                </TabsTrigger>
+              )}
+              <TabsTrigger
+                value="comments"
+                className="text-xs sm:text-sm px-2 sm:px-4"
+              >
+                Comments
+              </TabsTrigger>
+            </div>
           </TabsList>
 
-          <TabsContent value="home">
+          <TabsContent value="home" className="mt-4">
             <ClothingPieces mansoryDefault={3} clerkID={user?.id} />
           </TabsContent>
 
-          <TabsContent value="clothes">
+          <TabsContent value="clothes" className="mt-4">
             <Clothes userid={user?.id} />
           </TabsContent>
 
-          <TabsContent value="outfits">
+          <TabsContent value="outfits" className="mt-4">
             <Outfits userid={user?.id} />
           </TabsContent>
 
-          <TabsContent value="savedoutfits">
-            <SavedOutfits userid={user?.id} />
-          </TabsContent>
+          {role !== "pro" && (
+            <TabsContent value="savedoutfits" className="mt-4">
+              <SavedOutfits userid={user?.id} />
+            </TabsContent>
+          )}
 
-          <TabsContent value="comments">
+          <TabsContent value="comments" className="mt-4">
             <Comments userid={user?.id} />
           </TabsContent>
         </Tabs>
@@ -188,9 +222,11 @@ const SavedOutfits = ({ userid }: { userid: string | undefined }) => {
             No saved outfits yet.
           </div>
         ) : (
-          <div className="grid grid-cols-4 mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-10">
             {savedFits.map((savedFit) => (
-              <SavedFitItem key={savedFit.fitid} fitid={savedFit.fitid} />
+              <div key={savedFit.fitid}>
+                <SavedFitItem fitid={savedFit.fitid} />
+              </div>
             ))}
           </div>
         )}
@@ -212,7 +248,7 @@ const Comments = ({ userid }: { userid: string | undefined }) => {
   }, {} as Record<string, CommentType[]>);
 
   return (
-    <div className="grid grid-cols-3 gap-4 mt-5 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
       {Object.entries(groupedComments).map(([postid, postComments]) => (
         <CommentGroup key={postid} fitid={postid} comments={postComments} />
       ))}

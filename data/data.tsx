@@ -285,6 +285,7 @@ export const favoriteBrands: BrandCategory[] = [
 
 export const clothingBrands = [
   // Luxury Fashion Brands
+  "Traditional",
   "Louis Vuitton",
   "Gucci",
   "Chanel",

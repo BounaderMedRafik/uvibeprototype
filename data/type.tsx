@@ -22,6 +22,7 @@ export type SupaUser = {
   relation: string;
   work: string;
   skintone: string;
+  hijabi: boolean;
   favColors: ColorExample[];
   favBrands: BrandExample[];
 };
@@ -29,6 +30,15 @@ export type SupaUser = {
 export type HeadTypesProps = {
   head: string;
   headPic: string;
+};
+
+export type reportsProps = {
+  id: string;
+  created_at: Date;
+  userid: string;
+  reportMessage: string;
+  typepost: string;
+  postid: string;
 };
 
 export type BodyTypesProps = {

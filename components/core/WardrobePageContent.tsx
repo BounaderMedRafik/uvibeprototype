@@ -52,14 +52,18 @@ import FitTemplate from "./FitTemplate";
 
 const WardrobePageContent = () => {
   const { user } = useUser();
+  const role = user?.unsafeMetadata.role;
   return (
     <div className=" wrapper">
-      <div className="flex items-center justify-between max-w-2xl mx-auto">
+      <div className="md:flex space-y-2 md:space-y-0 block items-center justify-between max-w-2xl mx-auto">
         <div>
-          <div className=" text-xl  opacity-75">Your Wardrobe</div>
-          <div className=" max-w-sm opacity-50 text-xs">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-            ab eos? Facilis, magni voluptate.
+          <div className="text-2xl opacity-75 font-siradj">
+            Your {role === "pro" ? "Shop" : "Wardrobe"}
+          </div>
+          <div className="max-w-sm opacity-50 text-xs">
+            {role === "pro"
+              ? "Manage the items you're offering for sale. Add, edit, and organize your listings all in one place."
+              : "Browse and manage your personal collection. Keep track of your favorite pieces and outfits."}
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -158,16 +162,17 @@ const AddPiece = () => {
             </div>
           </Button>
         </DialogTrigger>
-        <DialogContent className=" min-w-3xl w-full">
+        <DialogContent className="sm:max-w-4xl w-[95vw] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Add new piece</DialogTitle>
           </DialogHeader>
 
-          <div className=" w-full flex items-start p-2">
-            <div className=" w-1/3 h-full flex flex-col justify-between items-center">
+          <div className="w-full flex flex-col md:flex-row items-start p-2 gap-4">
+            {/* Left Column - Image Upload */}
+            <div className="w-full md:w-1/3 flex flex-col gap-4">
               {/* Upload Image */}
               <label htmlFor="file-upload" className="cursor-pointer w-full">
-                <div className="group  cursor-pointer bg-accent/50 h-64 w-full rounded-xl border border-foreground/10 flex items-center justify-center">
+                <div className="group cursor-pointer bg-accent/50 h-64 w-full rounded-xl border border-foreground/10 flex items-center justify-center">
                   {imageUrl ? (
                     <img
                       src={imageUrl}
@@ -178,7 +183,7 @@ const AddPiece = () => {
                     <div>
                       {isLoading ? (
                         <div>
-                          <Loader size={16} className=" animate-spin" />
+                          <Loader size={16} className="animate-spin" />
                         </div>
                       ) : (
                         <div className="flex items-center justify-center flex-col gap-3">
@@ -186,7 +191,7 @@ const AddPiece = () => {
                             size={14}
                             className="translate-y-3 group-hover:translate-y-0 transition-all duration-300 ease-in-out"
                           />
-                          <div className="text-xs opacity-0 group-hover:opacity-50 transition-all duration-300 ease-in-out ">
+                          <div className="text-xs opacity-0 group-hover:opacity-50 transition-all duration-300 ease-in-out">
                             {isLoading ? "Uploading..." : "Upload attachment"}
                           </div>
                         </div>
@@ -207,11 +212,11 @@ const AddPiece = () => {
               />
 
               {/* Error Message */}
-              {error && <p className="text-sm text-red-500 mt-2">{error}</p>}
+              {error && <p className="text-sm text-red-500">{error}</p>}
 
-              <div className=" w-full mt-2 flex items-center gap-0.5 ">
+              <div className="w-full flex flex-col items-center gap-2">
                 <DialogClose asChild>
-                  <Button variant={"secondary"} size={"sm"} className=" w-1/2">
+                  <Button variant={"secondary"} size={"sm"} className="w-full">
                     Cancel
                   </Button>
                 </DialogClose>
@@ -223,7 +228,7 @@ const AddPiece = () => {
                     }}
                     disabled={addPieceLoading}
                     size={"sm"}
-                    className=" w-1/2"
+                    className="w-full"
                   >
                     Publish
                   </Button>
@@ -231,14 +236,13 @@ const AddPiece = () => {
               </div>
             </div>
 
-            <div className=" w-2/3 pl-3">
+            {/* Right Column - Form Fields */}
+            <div className="w-full md:w-2/3 space-y-3">
               <div>
                 <Input
                   placeholder="Cloth Name"
                   value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -246,17 +250,16 @@ const AddPiece = () => {
                 <Textarea
                   placeholder="Cloth Description"
                   value={description}
-                  className="mt-1"
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                  }}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
-              <div className="flex items-center gap-1 w-full mt-1">
+
+              {/* Responsive Grid for Form Fields */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {/* Brand selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className=" w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={cn(!brand ? "opacity-50" : "opacity-100")}
                       >
@@ -296,8 +299,8 @@ const AddPiece = () => {
 
                 {/* Color selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={cn(
                           !selectedColor ? "opacity-50" : "opacity-100"
@@ -307,10 +310,8 @@ const AddPiece = () => {
                           <div className="flex items-center gap-2">
                             <div>{selectedColor}</div>
                             <div
-                              style={{
-                                backgroundColor: selectedColor,
-                              }}
-                              className=" size-4 rounded-sm"
+                              style={{ backgroundColor: selectedColor }}
+                              className="size-4 rounded-sm"
                             />
                           </div>
                         ) : (
@@ -329,7 +330,7 @@ const AddPiece = () => {
                             <TooltipTrigger asChild>
                               <button
                                 className={cn(
-                                  " w-full aspect-square rounded-sm  ring-2 ring-transparent transition-all",
+                                  "w-full aspect-square rounded-sm ring-2 ring-transparent transition-all",
                                   selectedColor === color.hex
                                     ? "ring-primary scale-110"
                                     : "border-transparent"
@@ -345,13 +346,11 @@ const AddPiece = () => {
                     </div>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </div>
 
-              <div className="flex items-center gap-1 w-full mt-1">
                 {/* Size selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={!selectedSize ? "opacity-50" : "opacity-100"}
                       >
@@ -363,26 +362,24 @@ const AddPiece = () => {
                     <DropdownMenuLabel>Sizes</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {clothingSizes.map((item, i) => (
-                      <div className=" p-2" key={i}>
-                        <div className=" text-sm opacity-75 flex items-center gap-1">
+                      <div className="p-2" key={i}>
+                        <div className="text-sm opacity-75 flex items-center gap-1">
                           <div>
                             <ChevronRight size={10} />
                           </div>
                           <div>{item.name}</div>
                         </div>
-                        <div className=" flex flex-wrap items-center gap-0.5 mt-2">
+                        <div className="flex flex-wrap items-center gap-0.5 mt-2">
                           {item.sizes.map((size, j) => (
                             <div
                               key={j}
                               className={cn(
-                                " px-1 py-0.5 font-mono transition-all bg-accent/50 border-foreground/10 rounded-sm text-xs hover:bg-accent cursor-pointer ring-2 ring-transparent ",
+                                "px-1 py-0.5 font-mono transition-all bg-accent/50 border-foreground/10 rounded-sm text-xs hover:bg-accent cursor-pointer ring-2 ring-transparent",
                                 selectedSize == size
-                                  ? " ring-accent scale-110"
+                                  ? "ring-accent scale-110"
                                   : ""
                               )}
-                              onClick={() => {
-                                setSelectedSize(size);
-                              }}
+                              onClick={() => setSelectedSize(size)}
                             >
                               {size}
                             </div>
@@ -393,10 +390,10 @@ const AddPiece = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                {/* Category  */}
+                {/* Category */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={
                           !selectedCategory ? "opacity-50" : "opacity-100"
@@ -410,26 +407,24 @@ const AddPiece = () => {
                     <DropdownMenuLabel>Categories</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {clothingCategories.map((item, i) => (
-                      <div className=" p-2" key={i}>
-                        <div className=" text-sm opacity-75 flex items-center gap-1">
+                      <div className="p-2" key={i}>
+                        <div className="text-sm opacity-75 flex items-center gap-1">
                           <div>
                             <ChevronRight size={10} />
                           </div>
                           <div>{item.name}</div>
                         </div>
-                        <div className=" flex flex-wrap items-center gap-0.5 mt-2">
+                        <div className="flex flex-wrap items-center gap-0.5 mt-2">
                           {item.subcategories.map((cate, j) => (
                             <div
                               key={j}
                               className={cn(
-                                " px-1 py-0.5 font-mono transition-all bg-accent/50 border-foreground/10 rounded-sm text-xs hover:bg-accent cursor-pointer ring-2 ring-transparent ",
+                                "px-1 py-0.5 font-mono transition-all bg-accent/50 border-foreground/10 rounded-sm text-xs hover:bg-accent cursor-pointer ring-2 ring-transparent",
                                 selectedCategory == cate
-                                  ? " ring-accent scale-110"
+                                  ? "ring-accent scale-110"
                                   : ""
                               )}
-                              onClick={() => {
-                                setSelectedCategory(cate);
-                              }}
+                              onClick={() => setSelectedCategory(cate)}
                             >
                               {cate}
                             </div>
@@ -439,13 +434,11 @@ const AddPiece = () => {
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </div>
 
-              <div className="flex items-center gap-1 w-full mt-1">
                 {/* Fit Selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={!selectedFit ? "opacity-50" : "opacity-100"}
                       >
@@ -459,7 +452,6 @@ const AddPiece = () => {
                     {clothingFits.map((item, i) => (
                       <div key={i}>
                         <DropdownMenuCheckboxItem
-                          key={i}
                           checked={selectedFit === item}
                           onClick={() => setSelectedFit(item)}
                         >
@@ -472,8 +464,8 @@ const AddPiece = () => {
 
                 {/* Gender Selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={
                           !selectedGender ? "opacity-50" : "opacity-100"
@@ -489,7 +481,6 @@ const AddPiece = () => {
                     {clothingGender.map((item, i) => (
                       <div key={i}>
                         <DropdownMenuCheckboxItem
-                          key={i}
                           checked={selectedGender === item}
                           onClick={() => setSelectedGender(item)}
                         >
@@ -499,13 +490,11 @@ const AddPiece = () => {
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </div>
 
-              <div className="flex items-center gap-1 w-full mt-1">
                 {/* Pattern Selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={
                           !selectedPattern ? "opacity-50" : "opacity-100"
@@ -521,7 +510,6 @@ const AddPiece = () => {
                     {clothingPatterns.map((item, i) => (
                       <div key={i}>
                         <DropdownMenuCheckboxItem
-                          key={i}
                           checked={selectedPattern === item}
                           onClick={() => setSelectedPattern(item)}
                         >
@@ -534,8 +522,8 @@ const AddPiece = () => {
 
                 {/* Seasons Selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={
                           !selectedSeason ? "opacity-50" : "opacity-100"
@@ -551,7 +539,6 @@ const AddPiece = () => {
                     {clothingSeasons.map((item, i) => (
                       <div key={i}>
                         <DropdownMenuCheckboxItem
-                          key={i}
                           checked={selectedSeason === item}
                           onClick={() => setSelectedSeason(item)}
                         >
@@ -561,13 +548,11 @@ const AddPiece = () => {
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </div>
 
-              <div className="flex items-center gap-1 w-full mt-1">
-                {/* Size selection */}
+                {/* Occasion Selection */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="w-1/2" asChild>
-                    <Button variant="outline">
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full">
                       <div
                         className={
                           !selectedOccasion ? "opacity-50" : "opacity-100"
@@ -581,26 +566,24 @@ const AddPiece = () => {
                     <DropdownMenuLabel>Occasions</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {clothingOccasions.map((item, i) => (
-                      <div className=" p-2" key={i}>
-                        <div className=" text-sm opacity-75 flex items-center gap-1">
+                      <div className="p-2" key={i}>
+                        <div className="text-sm opacity-75 flex items-center gap-1">
                           <div>
                             <ChevronRight size={10} />
                           </div>
                           <div>{item.name}</div>
                         </div>
-                        <div className=" flex flex-wrap items-center gap-0.5 mt-2">
+                        <div className="flex flex-wrap items-center gap-0.5 mt-2">
                           {item.occasions.map((occ, j) => (
                             <div
                               key={j}
                               className={cn(
-                                " px-1 py-0.5 font-mono transition-all bg-accent/50 border-foreground/10 rounded-sm text-xs hover:bg-accent cursor-pointer ring-2 ring-transparent ",
+                                "px-1 py-0.5 font-mono transition-all bg-accent/50 border-foreground/10 rounded-sm text-xs hover:bg-accent cursor-pointer ring-2 ring-transparent",
                                 selectedOccasion == occ
-                                  ? " ring-accent scale-110"
+                                  ? "ring-accent scale-110"
                                   : ""
                               )}
-                              onClick={() => {
-                                setSelectedOccasion(occ);
-                              }}
+                              onClick={() => setSelectedOccasion(occ)}
                             >
                               {occ}
                             </div>
@@ -610,56 +593,48 @@ const AddPiece = () => {
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
+              </div>
 
-                <div className=" w-full">
-                  <Input
-                    className=" w-full"
-                    placeholder="Past source URL"
-                    value={source}
-                    onChange={(e) => {
-                      setSource(e.target.value);
-                    }}
+              {/* Source URL */}
+              <div className="w-full">
+                <Input
+                  placeholder="Past source URL"
+                  value={source}
+                  onChange={(e) => setSource(e.target.value)}
+                />
+              </div>
+
+              <div className="w-full h-px bg-accent" />
+
+              {/* For Sale Section */}
+              <div className="flex flex-col sm:flex-row gap-2 items-center">
+                <div className="flex items-center gap-2">
+                  <Switch
+                    checked={forsale}
+                    onClick={() => setForsale(!forsale)}
                   />
-                </div>
-              </div>
-
-              <div className=" w-2/3 mx-auto my-2 h-px bg-accent" />
-
-              <div>
-                <div className="flex   gap-2">
-                  <div className=" flex items-center gap-2">
-                    <Switch
-                      checked={forsale}
-                      onClick={() => {
-                        setForsale(!forsale);
-                      }}
-                    />
-                    <div
-                      className={cn(forsale ? "opacity-100" : " opacity-50")}
-                    >
-                      For sale
-                    </div>
+                  <div className={cn(forsale ? "opacity-100" : "opacity-50")}>
+                    For sale
                   </div>
-
-                  {forsale && (
-                    <div className=" relative">
-                      <div className=" text-[9px] opacity-75 font-mono absolute top-1/2 -translate-y-1/2 left-2 leading-0">
-                        DZD
-                      </div>
-                      <Input
-                        className=" h-8 text-xs w-36 pl-8 font-mono"
-                        type="number"
-                        value={price}
-                        onChange={(e) => {
-                          setPrice(e.target.value);
-                        }}
-                      />
-                    </div>
-                  )}
                 </div>
+
+                {forsale && (
+                  <div className="relative w-full sm:w-auto">
+                    <div className="text-[9px] opacity-75 font-mono absolute top-1/2 -translate-y-1/2 left-2 leading-0">
+                      DZD
+                    </div>
+                    <Input
+                      className="h-8 text-xs w-full sm:w-36 pl-8 font-mono"
+                      type="number"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  </div>
+                )}
               </div>
 
-              <div className=" mt-3">
+              {/* Tags */}
+              <div>
                 <TagsInput tags={tags} setTags={setTags} />
               </div>
             </div>

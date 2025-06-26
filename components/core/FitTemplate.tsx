@@ -10,6 +10,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bookmark,
+  Bug,
   ExternalLink,
   Heart,
   Save,
@@ -23,6 +24,8 @@ import { BsThreeDots } from "react-icons/bs";
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
@@ -42,6 +45,8 @@ import { usePathname } from "next/navigation";
 import { Textarea } from "../ui/textarea";
 import useToggleSave from "@/hooks/useToggleSave";
 import { Skeleton } from "../ui/skeleton";
+import { useReportPost } from "@/hooks/useReportPost";
+import { Button } from "../ui/button";
 
 const FitTemplate: React.FC<ClothingFit> = ({
   fitid,
@@ -60,6 +65,26 @@ const FitTemplate: React.FC<ClothingFit> = ({
   const { clothingPiece: feet } = useFetchClothingPieceById(footwearid);
   const { supaUser, isLoadingSupaUser } = useGetSupaUser(senderid);
   const { user } = useUser();
+  const [reportOpen, setReportOpen] = useState(false);
+  const [reportMessage, setReportMessage] = useState("");
+  const [reportSuccess, setReportSuccess] = useState(false);
+
+  const { report, loading: reportLoading } = useReportPost();
+
+  const handleSubmitReport = async () => {
+    if (!user?.id || !reportMessage.trim()) return;
+
+    const success = await report({
+      userid: user.id,
+      postid: fitid,
+      reportMessage,
+      typepost: "fit",
+    });
+
+    if (success) {
+      setReportSuccess(true);
+    }
+  };
 
   const { deleteFit, isLoading, error } = useDeleteFit();
 
@@ -141,10 +166,10 @@ const FitTemplate: React.FC<ClothingFit> = ({
         </div>
 
         <DialogTrigger className="absolute top-0 left-0 w-full h-full hover:bg-background/25 z-10 cursor-pointer" />
-        <DialogContent className=" min-w-2xl ">
+        <DialogContent className=" md:min-w-2xl max-h-[90vh] ">
           <DialogTitle className="hidden" />
-          <div className=" w-full  flex ">
-            <div className=" w-1/2 columns-2 space-y-2">
+          <div className=" w-full md:flex ">
+            <div className=" md:w-1/2 columns-2 space-y-2">
               <ClothPieceTemplate
                 pieceid={face?.pieceid}
                 senderid={face?.senderid}
@@ -233,7 +258,7 @@ const FitTemplate: React.FC<ClothingFit> = ({
                 tags={feet?.tags}
               />
             </div>
-            <div className=" w-1/2 p-3 ml-6">
+            <div className=" md:w-1/2 p-3 md:ml-6">
               <div className=" text-lg font-semibold opacity-100 flex items-center justify-between">
                 <div>{name}</div>
                 <div>
@@ -289,6 +314,66 @@ const FitTemplate: React.FC<ClothingFit> = ({
           <Skeleton className=" w-full aspect-square rounded-lg" />
         )}
       </div>
+      <div className="flex justify-end mt-2 pr-1">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setReportOpen(true)}
+          className="text-xs flex gap-1 items-center"
+        >
+          <Bug size={12} />
+          Report
+        </Button>
+      </div>
+
+      <Dialog
+        open={reportOpen}
+        onOpenChange={(open) => {
+          setReportOpen(open);
+          if (!open) {
+            setReportMessage("");
+            setReportSuccess(false);
+          }
+        }}
+      >
+        <DialogContent>
+          {reportSuccess ? (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-green-600">
+                  Report Submitted
+                </DialogTitle>
+              </DialogHeader>
+              <p className="text-sm text-muted-foreground">
+                Thanks for your report. We'll review it promptly.
+              </p>
+              <DialogFooter className="mt-4">
+                <Button onClick={() => setReportOpen(false)}>Close</Button>
+              </DialogFooter>
+            </>
+          ) : (
+            <>
+              <DialogHeader>
+                <DialogTitle>Report this Fit</DialogTitle>
+              </DialogHeader>
+              <Textarea
+                placeholder="Describe the issue"
+                value={reportMessage}
+                onChange={(e) => setReportMessage(e.target.value)}
+                className="min-h-[100px]"
+              />
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setReportOpen(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={handleSubmitReport} disabled={reportLoading}>
+                  {reportLoading ? "Submitting..." : "Submit"}
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </Dialog>
   );
 };

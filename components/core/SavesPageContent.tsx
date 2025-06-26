@@ -12,7 +12,7 @@ const SavesPageContent = () => {
   return (
     <div className="wrapper">
       <div className="max-w-2xl mx-auto">
-        <div className="text-xl opacity-75">Saved outfits</div>
+        <div className="text-2xl opacity-75 font-siradj">Saved outfits</div>
         <div className="max-w-sm opacity-50 text-xs">
           Browse and manage your favorite clothing combinations. Save outfits
           for different occasions or seasons.
@@ -27,9 +27,11 @@ const SavesPageContent = () => {
             No saved outfits yet.
           </div>
         ) : (
-          <div className="grid grid-cols-4 mt-10 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 mt-10 gap-3">
             {savedFits.map((savedFit) => (
-              <SavedFitItem key={savedFit.fitid} fitid={savedFit.fitid} />
+              <div>
+                <SavedFitItem key={savedFit.fitid} fitid={savedFit.fitid} />
+              </div>
             ))}
           </div>
         )}

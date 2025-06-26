@@ -13,8 +13,8 @@ const ExploreSection = ({
   title: string;
   items: string[];
 }) => (
-  <div className="mt-6">
-    <h2 className="text-lg  mb-2">{title}</h2>
+  <div className="mt-6 ">
+    <h2 className="text-lg  mb-2 ">{title}</h2>
     <div className="flex flex-wrap gap-2">
       {items.sort().map((item) => (
         <a href={`/explore/${item}`} key={item}>
@@ -29,9 +29,9 @@ const ExploreSection = ({
 
 const ExplorePageContent = () => {
   return (
-    <div className="max-w-2xl mx-auto pb-52 ">
+    <div className="max-w-2xl mx-auto pb-52 p-4 md:p-0 ">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Explore</h1>
+        <h1 className="text-2xl  font-siradj">Explore</h1>
         <p className="opacity-50 text-sm">
           Discover clothing styles, patterns, seasons, and occasions.
         </p>

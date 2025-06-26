@@ -1,7 +1,6 @@
 "use client";
 
 import supabase from "@/app/supabase/supaClient";
-import { buttonIconSize } from "@/data/data";
 import { SupaUser } from "@/data/type";
 import useChangeUserBanner from "@/hooks/useChangeUserBanner";
 import useChangeUserBio from "@/hooks/useChangeUserBio";
@@ -12,19 +11,13 @@ import {
   BriefcaseBusiness,
   Brush,
   Camera,
+  CheckCircle2,
   Eye,
-  Heart,
   Info,
   Loader,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { ChangeEvent, useState } from "react";
-import { FaCloudSunRain } from "react-icons/fa6";
-import { GiBodyHeight } from "react-icons/gi";
-import { IoIosBody } from "react-icons/io";
-import { IoScale } from "react-icons/io5";
-import { MdFace } from "react-icons/md";
-import { TbClover, TbShirt } from "react-icons/tb";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import {
@@ -40,14 +33,20 @@ import {
 } from "../ui/hover-card";
 import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
-import { CgColorPicker } from "react-icons/cg";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import useFollowedTags from "@/hooks/useFollowedTags";
-import FollowingList from "./FollowingList";
+import { TbClover, TbShirt } from "react-icons/tb";
+import { CgColorPicker, CgMoon } from "react-icons/cg";
+import { FaCloudSunRain } from "react-icons/fa6";
+import { IoIosBody } from "react-icons/io";
+import { IoScale } from "react-icons/io5";
+import { MdFace } from "react-icons/md";
+import { GiBodyHeight } from "react-icons/gi";
 
 const ProfilePageContent = () => {
   const { user, isLoaded } = useUser();
+  const role = user?.unsafeMetadata.role;
   const { supaUser, isLoadingSupaUser } = useGetSupaUser(user?.id);
+  // console.log(role);
 
   return (
     <div className=" -mt-24">
@@ -77,100 +76,131 @@ const ProfilePageContent = () => {
             <div className="  text-xl  font-bold flex items-center gap-2">
               <div>
                 {isLoaded ? (
-                  <div className="flex items-center gap-1">
-                    <div>{user?.fullName} </div>
-                    <HoverCard openDelay={300}>
-                      <HoverCardTrigger asChild>
-                        <div className=" rounded-full bg-primary size-5 flex items-center justify-center text-background">
-                          <Info size={14} />
-                        </div>
-                      </HoverCardTrigger>
-                      <HoverCardContent>
-                        <div className=" text-sm opacity-75 font-semibold">
-                          {user?.firstName} Informations
-                        </div>
-                        <div className=" mt-2">
-                          <div className=" flex items-center gap-2">
-                            <GiBodyHeight className=" opacity-75" size={16} />
-                            <div className="text-sm ">
-                              {supaUser?.height} cm
+                  role === "pro" ? (
+                    <div className="flex items-center gap-1">
+                      <div>{user?.fullName}</div>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-800 text-rose-200 text-xs font-semibold border border-rose-700">
+                            Shop
+                            <CheckCircle2 className="w-3.5 h-3.5 text-rose-200" />
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Verified</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1">
+                      <div>{user?.fullName} </div>
+                      <HoverCard openDelay={300}>
+                        <HoverCardTrigger asChild>
+                          <div className=" rounded-full bg-primary size-5 flex items-center justify-center text-background">
+                            <Info size={14} />
+                          </div>
+                        </HoverCardTrigger>
+                        <HoverCardContent>
+                          <div className=" text-sm opacity-75 font-semibold">
+                            {user?.firstName} Informations
+                          </div>
+                          <div className=" mt-2">
+                            <div className=" flex items-center gap-2">
+                              <GiBodyHeight className=" opacity-75" size={16} />
+                              <div className="text-sm ">
+                                {supaUser?.height} cm
+                              </div>
                             </div>
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <IoScale className=" opacity-75" size={16} />
-                            <div className="text-sm ">
-                              {supaUser?.weight} kg
+                            <div className=" flex items-center gap-2">
+                              <IoScale className=" opacity-75" size={16} />
+                              <div className="text-sm ">
+                                {supaUser?.weight} kg
+                              </div>
                             </div>
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <MdFace className=" opacity-75" size={16} />
-                            <div className="text-sm ">
-                              {supaUser?.headShape} Face shape
+                            <div className=" flex items-center gap-2">
+                              <CgMoon className=" opacity-75" size={16} />
+                              <div className="text-sm ">
+                                {supaUser?.hijabi ? "Hijab" : "Non Hijab"}
+                              </div>
                             </div>
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <IoIosBody className=" opacity-75" size={16} />
-                            <div className="text-sm ">
-                              {supaUser?.bodyShape} Body shape
+                            <div className=" flex items-center gap-2">
+                              <MdFace className=" opacity-75" size={16} />
+                              <div className="text-sm ">
+                                {supaUser?.headShape} Face shape
+                              </div>
                             </div>
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <TbClover className=" opacity-75" size={16} />
-                            <div className="text-sm ">{supaUser?.relation}</div>
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <BriefcaseBusiness
-                              className=" opacity-75"
-                              size={16}
-                            />
-                            <div className="text-sm ">{supaUser?.work}</div>
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <FaCloudSunRain className=" opacity-75" size={16} />
-                            <div
-                              style={{
-                                backgroundColor: supaUser?.skintone,
-                              }}
-                              className=" w-8 h-2.5 border border-foreground/10 rounded-full mt-0.5"
-                            />
-                          </div>
-                          <div className=" flex items-center gap-2">
-                            <CgColorPicker className=" opacity-75" size={16} />
-                            <div className="flex items-center gap-0.5">
-                              {supaUser?.favColors.map((item, i) => (
-                                <Tooltip key={i}>
-                                  <TooltipTrigger asChild>
-                                    <div
-                                      style={{
-                                        backgroundColor: item.hex,
-                                      }}
-                                      className=" w-8 h-2.5 border-2 border-foreground/10 rounded-full mt-0.5"
-                                    />
-                                  </TooltipTrigger>
-                                  <TooltipContent>{item.name}</TooltipContent>
-                                </Tooltip>
-                              ))}
+                            <div className=" flex items-center gap-2">
+                              <IoIosBody className=" opacity-75" size={16} />
+                              <div className="text-sm ">
+                                {supaUser?.bodyShape} Body shape
+                              </div>
                             </div>
-                          </div>
+                            <div className=" flex items-center gap-2">
+                              <TbClover className=" opacity-75" size={16} />
+                              <div className="text-sm ">
+                                {supaUser?.relation}
+                              </div>
+                            </div>
+                            <div className=" flex items-center gap-2">
+                              <BriefcaseBusiness
+                                className=" opacity-75"
+                                size={16}
+                              />
+                              <div className="text-sm ">{supaUser?.work}</div>
+                            </div>
+                            <div className=" flex items-center gap-2">
+                              <FaCloudSunRain
+                                className=" opacity-75"
+                                size={16}
+                              />
+                              <div
+                                style={{
+                                  backgroundColor: supaUser?.skintone,
+                                }}
+                                className=" w-8 h-2.5 border border-foreground/10 rounded-full mt-0.5"
+                              />
+                            </div>
+                            <div className=" flex items-center gap-2">
+                              <CgColorPicker
+                                className=" opacity-75"
+                                size={16}
+                              />
+                              <div className="flex items-center gap-0.5">
+                                {supaUser?.favColors.map((item, i) => (
+                                  <Tooltip key={i}>
+                                    <TooltipTrigger asChild>
+                                      <div
+                                        style={{
+                                          backgroundColor: item.hex,
+                                        }}
+                                        className=" w-8 h-2.5 border-2 border-foreground/10 rounded-full mt-0.5"
+                                      />
+                                    </TooltipTrigger>
+                                    <TooltipContent>{item.name}</TooltipContent>
+                                  </Tooltip>
+                                ))}
+                              </div>
+                            </div>
 
-                          <div className=" flex items-center gap-2">
-                            <TbShirt className=" opacity-75" size={16} />
-                            <div className="flex items-center gap-0.5 flex-wrap">
-                              {supaUser?.favBrands.map((item, i) => (
-                                <Tooltip key={i}>
-                                  <TooltipTrigger>
-                                    <div className="  px-1 py-0.5 border-2 border-foreground/10 rounded-full mt-0.5 text-[8px]">
-                                      {item.name}
-                                    </div>
-                                  </TooltipTrigger>
-                                </Tooltip>
-                              ))}
+                            <div className=" flex items-center gap-2">
+                              <TbShirt className=" opacity-75" size={16} />
+                              <div className="flex items-center gap-0.5 flex-wrap">
+                                {supaUser?.favBrands.map((item, i) => (
+                                  <Tooltip key={i}>
+                                    <TooltipTrigger>
+                                      <div className="  px-1 py-0.5 border-2 border-foreground/10 rounded-full mt-0.5 text-[8px]">
+                                        {item.name}
+                                      </div>
+                                    </TooltipTrigger>
+                                  </Tooltip>
+                                ))}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </HoverCardContent>
-                    </HoverCard>
-                  </div>
+                        </HoverCardContent>
+                      </HoverCard>
+                    </div>
+                  )
                 ) : (
                   <Skeleton className=" w-24 h-6" />
                 )}
@@ -421,7 +451,7 @@ const Bio = ({ user }: { user: SupaUser | null }) => {
   return (
     <div
       className={cn(
-        "text-base  opacity-75 flex flex-col gap-1 transition-all w-fit cursor-pointer hover:opacity-100",
+        "text-base  opacity-75 flex flex-col gap-1 transition-all w-2/3 cursor-pointer hover:opacity-100",
         editing ? "opacity-100" : ""
       )}
     >

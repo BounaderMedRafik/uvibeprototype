@@ -62,7 +62,7 @@ const SearchPageContent = () => {
 
   return (
     <div className="wrapper mx-auto px-4 py-8">
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col  space-y-6">
         {/* Search Form */}
         <form onSubmit={handleSubmit} className="flex gap-2">
           <Input
@@ -87,13 +87,13 @@ const SearchPageContent = () => {
 
         {/* Compact Filters */}
         <div className="border rounded-lg p-4">
-          <div className="flex flex-wrap gap-4">
+          <div className=" grid grid-cols-2 md:flex md:flex-wrap gap-4">
             {/* Brand Filter */}
             <Select
               value={filters.brand}
               onValueChange={(value) => handleFilterChange("brand", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Brand" />
               </SelectTrigger>
               <SelectContent>
@@ -110,7 +110,7 @@ const SearchPageContent = () => {
               value={filters.color}
               onValueChange={(value) => handleFilterChange("color", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Color" />
               </SelectTrigger>
               <SelectContent>
@@ -133,7 +133,7 @@ const SearchPageContent = () => {
               value={filters.size}
               onValueChange={(value) => handleFilterChange("size", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Size" />
               </SelectTrigger>
               <SelectContent>
@@ -152,7 +152,7 @@ const SearchPageContent = () => {
               value={filters.category}
               onValueChange={(value) => handleFilterChange("category", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
@@ -169,7 +169,7 @@ const SearchPageContent = () => {
               value={filters.fit}
               onValueChange={(value) => handleFilterChange("fit", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Fit" />
               </SelectTrigger>
               <SelectContent>
@@ -186,7 +186,7 @@ const SearchPageContent = () => {
               value={filters.gender}
               onValueChange={(value) => handleFilterChange("gender", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Gender" />
               </SelectTrigger>
               <SelectContent>
@@ -203,7 +203,7 @@ const SearchPageContent = () => {
               value={filters.pattern}
               onValueChange={(value) => handleFilterChange("pattern", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Pattern" />
               </SelectTrigger>
               <SelectContent>
@@ -220,7 +220,7 @@ const SearchPageContent = () => {
               value={filters.season}
               onValueChange={(value) => handleFilterChange("season", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Season" />
               </SelectTrigger>
               <SelectContent>
@@ -237,7 +237,7 @@ const SearchPageContent = () => {
               value={filters.occasion}
               onValueChange={(value) => handleFilterChange("occasion", value)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className=" w-full md:w-[180px]">
                 <SelectValue placeholder="Occasion" />
               </SelectTrigger>
               <SelectContent>

@@ -24,6 +24,7 @@ import React, { useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
@@ -44,6 +45,7 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
   const [skin, setSkin] = useState("");
   const [selectedColors, setSelectedColors] = useState<ColorExample[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<BrandExample[]>([]);
+  const [hijabi, setHijabi] = useState(false);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -116,6 +118,7 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
       skintone: skin,
       favColors: selectedColors,
       favBrands: selectedBrands,
+      hijabi: hijabi,
     });
 
     if (error) {
@@ -293,6 +296,31 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
                 <div className="font-Poppins mt-1 max-w-xs w-full text-xs opacity-75 text-start">
                   Select your head shape to discover the most flattering
                   hairstyles, hats, and eyewear that complement your features.
+                </div>
+
+                <div>Wearing hijab ?</div>
+                <div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Button>{hijabi ? "Yes" : "No"}</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className=" w-full">
+                      <DropdownMenuItem
+                        onClick={() => {
+                          setHijabi(true);
+                        }}
+                      >
+                        Yes
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => {
+                          setHijabi(false);
+                        }}
+                      >
+                        No
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
 
                 <div className=" grid grid-cols-3 gap-3  mt-4 ">
@@ -556,6 +584,17 @@ const ClerkToSupa = ({ children }: { children: React.ReactNode }) => {
                       {faceType || "Please fill out"}
                     </span>
                   </div>
+                  <div className="text-sm font-Poppins">
+                    <span>
+                      <span className="font-semibold">• Wearing Hijab? :</span>{" "}
+                      {hijabi === true
+                        ? "Yes"
+                        : hijabi === false
+                        ? "No"
+                        : "Please fill out"}
+                    </span>
+                  </div>
+
                   <div className=" text-sm font-Poppins">
                     <span>
                       <span className="font-semibold">• Body Type</span> :{" "}
